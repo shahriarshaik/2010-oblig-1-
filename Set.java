@@ -1,29 +1,66 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+public class Set<Integer> {
 
-import javax.print.DocFlavor.INPUT_STREAM;
+    public int data; 
+    public Set<Integer> rightChild;
+    public Set<Integer> leftChild;
+    public Set<Integer> parent;
+    public int size = 0;
 
-import java.util.HashSet;
-public class Set {
+    public Set(int data){
+        this.data = data;
+    }
+
+    public Set<Integer> insert(Set<Integer> set, int o){
+        if (set == null){ // usikker om jeg skal ha set == null eller set.data == null
+            set = new Set<>(o);
+        } else if (o < set.data){
+            insert(set.leftChild, o);
+        } else if (o > set.data){
+            insert(set.rightChild, o);
+        }
+        return set;
+    }
+
+    public Set<Integer> contains(Set<Integer> set, int o){
+        if (set == null){
+            return null; 
+        } else if (set.data == o){
+            return set; 
+        } else if(o < set.data){
+            return contains(set.leftChild, o);
+        } else if (o > set.data){
+            return contains(set.rightChild, o);
+        }
+        return null;
+    }
+    public Set<Integer> remove(Set<Integer> set, int o){
+        if(set == null){return null;}
+        else if(o < set.data){return remove(set.leftChild, o);}
+        else if (o > set.data){return remove(set.rightChild, o);}
+        else if( set.leftChild == null){return set.rightChild;}
+        else if(set.rightChild == null){return set.leftChild;}
+        /// ikkke ferdig trenger findmin
+        Set<Integer> min = FindMin(set.rightChild);
+        set.data = min.data;
+        set.rightChild = remove(set.rightChild, min.data);
+        return null;
+    }
+
+    public Set<Integer> FindMin(Set<Integer> set){
+        if(set.leftChild != null){
+            return FindMin(set.leftChild);
+        }
+        else {return set;}
+    }
+
+    public int size(){return size;}
+
+
+    /* 
     static ArrayList<Integer> liste = new ArrayList<>();
     static HashSet<Integer> tallliste = new HashSet<>();
     static boolean contains(HashSet<Integer> set, int o){if(set.contains(o)){return true;} else {return false;}}
     static boolean insert(HashSet<Integer> set, int o){try {set.add(o); return true;} catch (Exception e) {return false;}}
     static boolean remove(HashSet<Integer> set, int o){try {set.remove(o); return true;} catch (Exception e) {return false;}}
-    static void size(){System.out.println("size: " + liste.size());}
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        Scanner input = new Scanner(System.in);
-        System.out.println("hvor mange ");
-        int antallganger = Integer.parseInt(sc.next());
-        for (int i = 0; i < antallganger; i++) {
-            System.out.println("skriv contains / insert / remove / size");
-            String inputString = input.nextLine();
-            String[] splitte = inputString.split(" ");
-            try {
-                if(splitte[0].equals("contains")){contains(tallliste, Integer.parseInt(splitte[1]));}
-                else if(splitte[0].equals("insert")){insert(tallliste, Integer.parseInt(splitte[1]));}
-                else if(splitte[0].equals("remove")){remove(tallliste, Integer.parseInt(splitte[1]));}
-                else if(splitte[0].equals("size")){size();}
-                else{System.out.println("wrong input given ");i--;}
-            } catch (Exception e) {}}}}
+    static void size(){System.out.println("size: " + liste.size());}*/
+        }
