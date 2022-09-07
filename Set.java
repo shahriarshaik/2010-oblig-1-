@@ -10,6 +10,11 @@ public class Set<Integer> {
         this.data = data;
     }
 
+    @Override
+    public String toString() {
+        return "node: " + data;
+    }
+
     public Set<Integer> insert(Set<Integer> set, int o) {
         if (set == null) { // usikker om jeg skal ha set == null eller set.data == null
             set = new Set<>(o);
@@ -37,21 +42,60 @@ public class Set<Integer> {
     public Set<Integer> remove(Set<Integer> set, int o) {
         if (set == null) {
             return null;
-        } else if (o < set.data) {
+        }
+        if (o < set.data) {
+            if (set.leftChild.rightChild == null && set.leftChild.leftChild == null) {
+                set.leftChild = null;
+                return null;
+            }
             return remove(set.leftChild, o);
-        } else if (o > set.data) {
+        }
+        if (o > set.data) {
+            if (set.rightChild.leftChild == null && set.rightChild.leftChild == null) {
+                set.rightChild = null;
+                return null;
+            }
             return remove(set.rightChild, o);
-        } else if (set.leftChild == null) {
+        }
+        if (set.leftChild == null && set.rightChild == null) {
+            System.out.println("setter denne set til null: " + set);
+            set = null;
+            return null;
+        }
+        if (set.leftChild == null) {
             return set.rightChild;
-        } else if (set.rightChild == null) {
+        }
+        if (set.rightChild == null) {
             return set.leftChild;
         }
+
         /// ikkke ferdig trenger findmin
         Set<Integer> min = FindMin(set.rightChild);
         set.data = min.data;
         set.rightChild = remove(set.rightChild, min.data);
         return null;
     }
+
+    /*
+     * public Set<Integer> remove(Set<Integer> set, int o) {
+     * if (set == null) {
+     * return null;
+     * } else if (o < set.data) {
+     * return remove(set.leftChild, o);
+     * } else if (o > set.data) {
+     * return remove(set.rightChild, o);
+     * } else if (set.leftChild == null) {
+     * return set.rightChild;
+     * } else if (set.rightChild == null) {
+     * return set.leftChild;
+     * }
+     * /// ikkke ferdig trenger findmin
+     * Set<Integer> min = FindMin(set.rightChild);
+     * set.data = min.data;
+     * set.rightChild = remove(set.rightChild, min.data);
+     * return null;
+     * }
+     */
 
     public Set<Integer> FindMin(Set<Integer> set) {
         if (set.leftChild != null) {
