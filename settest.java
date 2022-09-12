@@ -22,7 +22,7 @@ public class settest {
             System.out.println("kjørte ikke leftchild");
         }
         System.out.println("skal fjerne 5 og 2");
-        set.remove(set, 2);
+        //set.remove(set, 2);
         set.remove(set, 5);
         // set.remove(set, 1);
         // System.out.println(set.remove(set, 5));

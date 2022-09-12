@@ -38,7 +38,7 @@ public class Set<Integer> {
         }
         return null;
     }
-
+    /* 
     public Set<Integer> remove(Set<Integer> set, int o) {
         if (set == null) {
             return null;
@@ -68,37 +68,41 @@ public class Set<Integer> {
         if (set.rightChild == null) {
             return set.leftChild;
         }
-
         /// ikkke ferdig trenger findmin
         Set<Integer> min = FindMin(set.rightChild);
         set.data = min.data;
         set.rightChild = remove(set.rightChild, min.data);
+        return set;
+    }
+    */
+    public Set<Integer> remove(Set<Integer> set, int o) {
+    if (set == null) {
         return null;
     }
-
-    /*
-     * public Set<Integer> remove(Set<Integer> set, int o) {
-     * if (set == null) {
-     * return null;
-     * } else if (o < set.data) {
-     * return remove(set.leftChild, o);
-     * } else if (o > set.data) {
-     * return remove(set.rightChild, o);
-     * } else if (set.leftChild == null) {
-     * return set.rightChild;
-     * } else if (set.rightChild == null) {
-     * return set.leftChild;
-     * }
-     * /// ikkke ferdig trenger findmin
-     * Set<Integer> min = FindMin(set.rightChild);
-     * set.data = min.data;
-     * set.rightChild = remove(set.rightChild, min.data);
-     * return null;
-     * }
-     */
+    if (o < set.data) {
+        set.leftChild = remove(set.leftChild, o);
+        //return remove(set.leftChild, o);
+    }
+    if (o > set.data) {
+        set.rightChild = remove(set.rightChild, o);
+        //return remove(set.rightChild, o);
+    } 
+    if (set.leftChild == null) {
+        //set.data = set.rightChild.data;
+        return set.rightChild;
+    } 
+    if (set.rightChild == null) {
+        //set.data = set.leftChild.data;
+        return set.leftChild;
+    }
+    Set<Integer> min = FindMin(set.rightChild);
+    set.data = min.data;
+    set.rightChild = remove(set.rightChild, min.data);
+    return set;
+    }
 
     public Set<Integer> FindMin(Set<Integer> set) {
-        if (set.leftChild != null) {
+        if (set != null && set.leftChild != null) {
             return FindMin(set.leftChild);
         } else {
             return set;
