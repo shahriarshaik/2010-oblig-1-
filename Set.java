@@ -38,43 +38,8 @@ public class Set<Integer> {
         }
         return null;
     }
+
     /* 
-    public Set<Integer> remove(Set<Integer> set, int o) {
-        if (set == null) {
-            return null;
-        }
-        if (o < set.data) {
-            if (set.leftChild.rightChild == null && set.leftChild.leftChild == null) {
-                set.leftChild = null;
-                return null;
-            }
-            return remove(set.leftChild, o);
-        }
-        if (o > set.data) {
-            if (set.rightChild.leftChild == null && set.rightChild.leftChild == null) {
-                set.rightChild = null;
-                return null;
-            }
-            return remove(set.rightChild, o);
-        }
-        if (set.leftChild == null && set.rightChild == null) {
-            System.out.println("setter denne set til null: " + set);
-            set = null;
-            return null;
-        }
-        if (set.leftChild == null) {
-            return set.rightChild;
-        }
-        if (set.rightChild == null) {
-            return set.leftChild;
-        }
-        /// ikkke ferdig trenger findmin
-        Set<Integer> min = FindMin(set.rightChild);
-        set.data = min.data;
-        set.rightChild = remove(set.rightChild, min.data);
-        return set;
-    }
-    */
     public Set<Integer> remove(Set<Integer> set, int o) {
     if (set == null) {
         return null;
@@ -84,14 +49,14 @@ public class Set<Integer> {
         //return remove(set.leftChild, o);
     }
     if (o > set.data) {
-        set.rightChild = remove(set.rightChild, o);
+        set.rightChild = remove(set.rightChild, o); //vil at remove() skal returne null | den ble null 
         //return remove(set.rightChild, o);
     } 
     if (set.leftChild == null) {
         //set.data = set.rightChild.data;
         return set.rightChild;
     } 
-    if (set.rightChild == null) {
+    if (set.rightChild == null) { // tror denne kjørte i node: 2 og
         //set.data = set.leftChild.data;
         return set.leftChild;
     }
@@ -99,6 +64,31 @@ public class Set<Integer> {
     set.data = min.data;
     set.rightChild = remove(set.rightChild, min.data);
     return set;
+    }
+    */
+
+    public Set<Integer> remove(Set<Integer> v, int x){
+        if(v == null){
+            return null;
+        }
+        if( x < v.data){
+            v.leftChild = remove(v.leftChild, x);
+            return v;
+        }
+        if(x > v.data){
+            v.rightChild = remove(v.rightChild, x);
+            return v; 
+        }
+        if(v.leftChild == null){
+            return v.rightChild;
+        }
+        if(v.rightChild == null){
+            return v.leftChild;
+        }
+        Set<Integer> u = FindMin(v.rightChild);
+        v.data = u.data;
+        v.rightChild = remove(v.rightChild, u.data);
+        return v;
     }
 
     public Set<Integer> FindMin(Set<Integer> set) {
@@ -113,15 +103,4 @@ public class Set<Integer> {
         return size;
     }
 
-    /*
-     * static ArrayList<Integer> liste = new ArrayList<>();
-     * static HashSet<Integer> tallliste = new HashSet<>();
-     * static boolean contains(HashSet<Integer> set, int
-     * o){if(set.contains(o)){return true;} else {return false;}}
-     * static boolean insert(HashSet<Integer> set, int o){try {set.add(o); return
-     * true;} catch (Exception e) {return false;}}
-     * static boolean remove(HashSet<Integer> set, int o){try {set.remove(o); return
-     * true;} catch (Exception e) {return false;}}
-     * static void size(){System.out.println("size: " + liste.size());}
-     */
 }
