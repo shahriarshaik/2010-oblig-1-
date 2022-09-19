@@ -3,7 +3,8 @@ import java.util.HashSet;
 
 public class prog {
     public static void main(String[] args) {
-        Set<Integer> set = new Set<>();
+        // Set<Integer> set = new Set<>();
+        Set<Integer> set = null;
         Scanner sc = new Scanner(System.in);
         Scanner input = new Scanner(System.in);
         System.out.println("hvor mange ");
@@ -13,10 +14,11 @@ public class prog {
             String inputString = input.nextLine(); // leser input
             String[] splitte = inputString.split(" "); // splitter input
             try {
-                System.out.println("input: " + splitte[0]);
+                // System.out.println("input: " + splitte[0]);
                 if (splitte[0].equals("contains")) { // contains, true = finnes, false = finnes ikke
-                    System.out.println("contains kjørte");
-                    System.out.println("contains returnerer: " + set.contains(set, Integer.parseInt(splitte[1])));
+                    // System.out.println("contains kjørte");
+                    // System.out.println("contains returnerer: " + set.contains(set,
+                    // Integer.parseInt(splitte[1])));
                     try {
                         if (set.contains(set, Integer.parseInt(splitte[1])).data == Integer.parseInt(splitte[1])) {
                             System.out.println("True");
@@ -25,7 +27,12 @@ public class prog {
                         System.out.println("False");
                     }
                 } else if (splitte[0].equals("insert")) { // insert
-                    set.insert(set, Integer.parseInt(splitte[1]));
+                    if (set == null) {
+                        set = new Set<>(Integer.parseInt(splitte[1]));
+                    } else {
+                        set.insert(set, Integer.parseInt(splitte[1]));
+                    }
+                    // set.insert(set, Integer.parseInt(splitte[1]));
                 } else if (splitte[0].equals("remove")) { // remove
                     set.remove(set, Integer.parseInt(splitte[1]));
                 } else if (splitte[0].equals("size")) { // size

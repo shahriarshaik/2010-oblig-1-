@@ -32,11 +32,14 @@ public class Set<Integer> {
     public Set<Integer> contains(Set<Integer> set, int o) {
         if (set == null) {
             return null;
-        } else if (set.data == o) {
+        }
+        if (set.data == o) {
             return set;
-        } else if (o < set.data) {
+        }
+        if (o < set.data) {
             return contains(set.leftChild, o);
-        } else if (o > set.data) {
+        }
+        if (o > set.data) {
             return contains(set.rightChild, o);
         }
         return null;
