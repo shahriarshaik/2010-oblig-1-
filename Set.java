@@ -9,7 +9,9 @@ public class Set<Integer> {
     public Set(int data) {
         this.data = data;
     }
-    public Set(){}
+
+    public Set() {
+    }
 
     @Override
     public String toString() {
@@ -17,7 +19,7 @@ public class Set<Integer> {
     }
 
     public Set<Integer> insert(Set<Integer> set, int o) {
-        if (set == null) { // usikker om jeg skal ha set == null eller set.data == null
+        if (set == null) {
             set = new Set<>(o);
         } else if (o < set.data) {
             set.leftChild = insert(set.leftChild, o);
@@ -38,24 +40,24 @@ public class Set<Integer> {
             return contains(set.rightChild, o);
         }
         return null;
-    }   
+    }
 
-    public Set<Integer> remove(Set<Integer> v, int x){
-        if(v == null){
+    public Set<Integer> remove(Set<Integer> v, int x) {
+        if (v == null) {
             return null;
         }
-        if( x < v.data){
+        if (x < v.data) {
             v.leftChild = remove(v.leftChild, x);
             return v;
         }
-        if(x > v.data){
+        if (x > v.data) {
             v.rightChild = remove(v.rightChild, x);
-            return v; 
+            return v;
         }
-        if(v.leftChild == null){
+        if (v.leftChild == null) {
             return v.rightChild;
         }
-        if(v.rightChild == null){
+        if (v.rightChild == null) {
             return v.leftChild;
         }
         Set<Integer> u = FindMin(v.rightChild);
