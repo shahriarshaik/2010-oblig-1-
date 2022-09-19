@@ -9,6 +9,7 @@ public class Set<Integer> {
     public Set(int data) {
         this.data = data;
     }
+    public Set(){}
 
     @Override
     public String toString() {
@@ -37,35 +38,7 @@ public class Set<Integer> {
             return contains(set.rightChild, o);
         }
         return null;
-    }
-
-    /* 
-    public Set<Integer> remove(Set<Integer> set, int o) {
-    if (set == null) {
-        return null;
-    }
-    if (o < set.data) {
-        set.leftChild = remove(set.leftChild, o);
-        //return remove(set.leftChild, o);
-    }
-    if (o > set.data) {
-        set.rightChild = remove(set.rightChild, o); //vil at remove() skal returne null | den ble null 
-        //return remove(set.rightChild, o);
-    } 
-    if (set.leftChild == null) {
-        //set.data = set.rightChild.data;
-        return set.rightChild;
-    } 
-    if (set.rightChild == null) { // tror denne kjørte i node: 2 og
-        //set.data = set.leftChild.data;
-        return set.leftChild;
-    }
-    Set<Integer> min = FindMin(set.rightChild);
-    set.data = min.data;
-    set.rightChild = remove(set.rightChild, min.data);
-    return set;
-    }
-    */
+    }   
 
     public Set<Integer> remove(Set<Integer> v, int x){
         if(v == null){
