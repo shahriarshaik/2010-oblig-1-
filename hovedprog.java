@@ -1,15 +1,16 @@
 import java.util.Scanner;
+import java.io.File;
 
-public class prog {
-    public static void main(String[] args) {
+public class hovedprog {
+    public static void main(String[] args) throws Exception {
         Set<Integer> set = null;
-        Scanner sc = new Scanner(System.in);
-        Scanner input = new Scanner(System.in);
-        System.out.println("hvor mange ");
+        // File fil = new File("eksempel_input.txt");
+        Scanner sc = new Scanner(new File("2010-oblig-1-/eksempel_input.txt"));
+        // Scanner input = new Scanner(System.in);
         int antallganger = Integer.parseInt(sc.next());
         String inputString = "";
         for (int i = 0; i < antallganger; i++) { // for loop som looper antall ganger oppgitt
-            inputString = input.nextLine(); // leser input
+            inputString = sc.nextLine(); // leser input
             String[] splitte = inputString.split(" "); // splitter input
             try {
                 if (splitte[0].equals("contains")) { // contains, true = finnes, false = finnes ikke

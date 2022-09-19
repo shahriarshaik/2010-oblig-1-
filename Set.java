@@ -3,8 +3,7 @@ public class Set<Integer> {
     public int data;
     public Set<Integer> rightChild;
     public Set<Integer> leftChild;
-    public Set<Integer> parent;
-    public int size = 0;
+    static public int size = 0;
 
     public Set(int data) {
         this.data = data;
@@ -21,6 +20,7 @@ public class Set<Integer> {
     public Set<Integer> insert(Set<Integer> set, int o) {
         if (set == null) {
             set = new Set<>(o);
+            size++;
         } else if (o < set.data) {
             set.leftChild = insert(set.leftChild, o);
         } else if (o > set.data) {
