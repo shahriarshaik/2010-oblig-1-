@@ -3,7 +3,7 @@ public class Set<Integer> {
     public int data;
     public Set<Integer> rightChild;
     public Set<Integer> leftChild;
-    static public int size = 0;
+    static public int size = 1;
 
     public Set(int data) {
         this.data = data;
@@ -58,9 +58,11 @@ public class Set<Integer> {
             return v;
         }
         if (v.leftChild == null) {
+            size--;
             return v.rightChild;
         }
         if (v.rightChild == null) {
+            size--;
             return v.leftChild;
         }
         Set<Integer> u = FindMin(v.rightChild);
