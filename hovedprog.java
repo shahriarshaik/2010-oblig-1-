@@ -6,7 +6,7 @@ public class hovedprog {
         long startTime = System.nanoTime();
         Set<Integer> set = null;
         // File fil = new File("eksempel_input.txt");
-        Scanner sc = new Scanner(new File("inputs/input_100000"));
+        Scanner sc = new Scanner(new File("oppgave4eks"));
         // Scanner input = new Scanner(System.in);
         int antallganger = Integer.parseInt(sc.next());
         String inputString = "";
