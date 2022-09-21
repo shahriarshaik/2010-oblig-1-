@@ -39,12 +39,15 @@ public class oppgave4b {
         // printer ut svaret / midten
         System.out.println("popper ut: " + o.poll());
 
-
+        System.out.println(o.size());
         //size = 5
         //denne lager hoyre siden
-        for (int i = 0; i <= o.size(); i++) {
+        
+        /* 
+        for (int i = 0; i < o.size(); i++) {
+            System.out.println("kj");
             hoyreListe.offer(o.poll());
-        }
+        }*/
 
         /* 
         for (Integer integer : o) {
@@ -52,14 +55,11 @@ public class oppgave4b {
         }
         */
 
-        System.out.println("dette er høyreliste: ");
-        for (Integer integer : hoyreListe) {
-            System.out.println(integer);
+        if(o.size()>0){
+            midt(o);
         }
-
-        System.out.println("dette er venstre: ");
-        for (Integer integer : venstreListe) {
-            System.out.println(integer);
+        if(venstreListe.size() > 0){
+            midt(venstreListe);
         }
     }
 
