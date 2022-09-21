@@ -10,11 +10,10 @@
  *  poll() = fjerner / henter ut, usikker hvilken
  */
 
-
-
 import java.util.Scanner;
 import java.io.File;
 import java.util.PriorityQueue;
+
 public class oppgave4b {
 
     public static void midt(PriorityQueue<Integer> o) {
@@ -22,47 +21,29 @@ public class oppgave4b {
         int midten = o.size() / 2;
 
         // variabler
-        int antallHoyre = 0;
-        int antallVenstre = 0;
-        int peker;
-        PriorityQueue<Integer> hoyreListe = new PriorityQueue<>();
         PriorityQueue<Integer> venstreListe = new PriorityQueue<>();
-
 
         // size = 11
         // dette lager venstre siden
         for (int i = 0; i < midten; i++) {
             venstreListe.offer(o.poll());
         }
-        
+
         // size = 6
         // printer ut svaret / midten
         System.out.println("popper ut: " + o.poll());
 
         System.out.println(o.size());
-        //size = 5
-        //denne lager hoyre siden
-        
-        /* 
-        for (int i = 0; i < o.size(); i++) {
-            System.out.println("kj");
-            hoyreListe.offer(o.poll());
-        }*/
+        // size = 5
+        // denne lager hoyre siden
 
-        /* 
-        for (Integer integer : o) {
-            hoyreListe.offer(integer);
-        }
-        */
-
-        if(o.size()>0){
+        if (o.size() > 0) {
             midt(o);
         }
-        if(venstreListe.size() > 0){
+        if (venstreListe.size() > 0) {
             midt(venstreListe);
         }
     }
-
 
     public static void main(String[] args) throws Exception {
         PriorityQueue<Integer> liste = new PriorityQueue<>();
@@ -73,7 +54,7 @@ public class oppgave4b {
         int kjorAnt = Integer.parseInt(sc.nextLine());
 
         for (int i = 0; i < kjorAnt; i++) {
-            liste.offer(Integer.parseInt(sc.nextLine())) ;
+            liste.offer(Integer.parseInt(sc.nextLine()));
         }
 
         midt(liste);
